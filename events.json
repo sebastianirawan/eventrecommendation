@@ -1,0 +1,8 @@
+[
+    {"id": 1, "name": "Twilight Jazz Festival", "genre": "jazz", "artist": "Sarah & The band", "date": "2023-10-28", "price": 450000, "location": "City Park Open Air", "vibe": "intimate"},
+    {"id": 2, "name": "Rock Explosion", "genre": "rock", "artist": "The Thunder", "date": "2023-10-29", "price": 750000, "location": "Grand Stadium", "vibe": "loud"},
+    {"id": 3, "name": "Classical Night", "genre": "classical", "artist": "City Orchestra", "date": "2023-10-28", "price": 300000, "location": "Opera House", "vibe": "formal"},
+    {"id": 4, "name": "Indie Vibes", "genre": "pop", "artist": "Moon Child", "date": "2023-10-30", "price": 150000, "location": "Small Cafe", "vibe": "relaxed"},
+    {"id": 5, "name": "Theater: Romeo & Juliet", "genre": "theater", "artist": "Drama Club", "date": "2023-10-28", "price": 200000, "location": "Community Hall", "vibe": "artistic"},
+    {"id": 6, "name": "Jazz in the Park", "genre": "jazz", "artist": "Smooth Trio", "date": "2023-11-01", "price": 100000, "location": "Central Garden", "vibe": "open-air"}
+]
