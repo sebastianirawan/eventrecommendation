@@ -117,6 +117,11 @@ def get_recommendation(user_prompt):
     )
 
 if __name__ == "__main__":
-    input_text = "Saya ingin konser jazz akhir pekan ini, suasananya intimate. Budget maksimal 500 ribu."
+    input_text = """
+    Halo, tolong carikan saya konser musik Jazz untuk tanggal 28 Oktober 2023. 
+    Saya sangat ingin menonton 'Sarah & The Band' jika ada. 
+    Saya lebih suka lokasi di luar ruangan seperti taman (City Park) karena mencari vibe yang intimate. 
+    Budget saya maksimal 500.000 rupiah.
+    """
     
     get_recommendation(input_text)
