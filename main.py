@@ -3,7 +3,7 @@ import random
 from typing import List
 from autogen import AssistantAgent, UserProxyAgent, GroupChat, GroupChatManager, register_function
 
-model = 'gemma3:1b'
+model = 'llama3.2'
 llm_config = {
     "model": model,
     "api_key": 'ollama',
@@ -67,56 +67,56 @@ groupchat = GroupChat(
 
 groupchat_mgr = GroupChatManager(groupchat, llm_config=llm_config)
 
-# def filter_events(genre: str = None, max_price: int = None) -> str:
-#     try:
-#         with open('events.json', 'r') as f:
-#             events = json.load(f)
+def filter_events(genre: str = None, max_price: int = None) -> str:
+    try:
+        with open('events.json', 'r') as f:
+            events = json.load(f)
         
-#         results = []
-#         for event in events:
-#             if genre and genre.lower() not in event['genre'].lower():
-#                 continue
-#             if max_price and event['price'] > max_price:
-#                 continue
-#             results.append(event)
+        results = []
+        for event in events:
+            if genre and genre.lower() not in event['genre'].lower():
+                continue
+            if max_price and event['price'] > max_price:
+                continue
+            results.append(event)
             
-#         if not results:
-#             return "No events found matching criteria."
-#         return json.dumps(results)
-#     except Exception as e:
-#         return f"Error reading database: {str(e)}"
+        if not results:
+            return "No events found matching criteria."
+        return json.dumps(results)
+    except Exception as e:
+        return f"Error reading database: {str(e)}"
 
-# def check_seat_availability(event_ids: List[int]) -> str:
-#     statuses = ["Available", "Limited Seats", "Sold Out"]
-#     results = {}
-#     for eid in event_ids:
-#         results[eid] = random.choice(statuses)
-#     return json.dumps(results)
+def check_seat_availability(event_ids: List[int]) -> str:
+    statuses = ["Available", "Limited Seats", "Sold Out"]
+    results = {}
+    for eid in event_ids:
+        results[eid] = random.choice(statuses)
+    return json.dumps(results)
 
-# register_function(
-#     filter_events,
-#     caller=data_agent,
-#     executor=user,
-#     name="filter_events",
-#     description="Filters events database by genre and max price."
-# )
+register_function(
+    filter_events,
+    caller=data_agent,
+    executor=user,
+    name="filter_events",
+    description="Filters events database by genre and max price."
+)
 
-# register_function(
-#     check_seat_availability,
-#     caller=seat_agent,
-#     executor=user,
-#     name="check_seat_availability",
-#     description="Checks seat availability for specific event IDs."
-# )
+register_function(
+    check_seat_availability,
+    caller=seat_agent,
+    executor=user,
+    name="check_seat_availability",
+    description="Checks seat availability for specific event IDs."
+)
 
-# def get_recommendation(user_prompt):
-#     print(f"\n--- Processing User Request: {user_prompt} ---\n")
-#     user.initiate_chat(
-#         groupchat_mgr,
-#         message=user_prompt
-#     )
+def get_recommendation(user_prompt):
+    print(f"\n--- Processing User Request: {user_prompt} ---\n")
+    user.initiate_chat(
+        groupchat_mgr,
+        message=user_prompt
+    )
 
-# if __name__ == "__main__":
-#     input_text = "Saya ingin konser jazz akhir pekan ini, suasananya intimate. Budget maksimal 500 ribu."
+if __name__ == "__main__":
+    input_text = "Saya ingin konser jazz akhir pekan ini, suasananya intimate. Budget maksimal 500 ribu."
     
-#     get_recommendation(input_text)
+    get_recommendation(input_text)
