@@ -1,122 +1,68 @@
 [
-  {
-    "id": 1,
-    "name": "Twilight Jazz Festival",
-    "genre": "jazz",
-    "artist": "Sarah & The Band",
-    "date": "2023-10-28",
-    "price": 450000,
-    "location": "City Park Open Air",
-    "vibe": "intimate"
-  },
-  {
-    "id": 2,
-    "name": "Rock Explosion",
-    "genre": "rock",
-    "artist": "The Thunder",
-    "date": "2023-10-29",
-    "price": 750000,
-    "location": "Grand Stadium",
-    "vibe": "loud"
-  },
-  {
-    "id": 3,
-    "name": "Classical Night",
-    "genre": "classical",
-    "artist": "City Orchestra",
-    "date": "2023-10-28",
-    "price": 300000,
-    "location": "Opera House",
-    "vibe": "formal"
-  },
-  {
-    "id": 4,
-    "name": "Indie Vibes",
-    "genre": "pop",
-    "artist": "Moon Child",
-    "date": "2023-10-30",
-    "price": 150000,
-    "location": "Small Cafe",
-    "vibe": "relaxed"
-  },
-  {
-    "id": 5,
-    "name": "Theater: Romeo & Juliet",
-    "genre": "theater",
-    "artist": "Drama Club",
-    "date": "2023-10-28",
-    "price": 200000,
-    "location": "Community Hall",
-    "vibe": "artistic"
-  },
-  {
-    "id": 6,
-    "name": "Jazz in the Park",
-    "genre": "jazz",
-    "artist": "Smooth Trio",
-    "date": "2023-11-01",
-    "price": 100000,
-    "location": "Central Garden",
-    "vibe": "open-air"
-  },
-  {
-    "id": 7,
-    "name": "Electric Dreams",
-    "genre": "edm",
-    "artist": "DJ Pulse",
-    "date": "2023-11-02",
-    "price": 500000,
-    "location": "Neon Club",
-    "vibe": "energetic"
-  },
-  {
-    "id": 8,
-    "name": "Laugh Out Loud",
-    "genre": "comedy",
-    "artist": "Mike The Joker",
-    "date": "2023-11-03",
-    "price": 250000,
-    "location": "Comedy Cellar",
-    "vibe": "hilarious"
-  },
-  {
-    "id": 9,
-    "name": "Acoustic Sunday",
-    "genre": "folk",
-    "artist": "The Wanderers",
-    "date": "2023-11-05",
-    "price": 120000,
-    "location": "Bookstore Patio",
-    "vibe": "cozy"
-  },
-  {
-    "id": 10,
-    "name": "Heavy Metal Thunder",
-    "genre": "metal",
-    "artist": "Iron Fist",
-    "date": "2023-11-04",
-    "price": 600000,
-    "location": "The Warehouse",
-    "vibe": "intense"
-  },
-  {
-    "id": 11,
-    "name": "Ballet: Swan Lake",
-    "genre": "dance",
-    "artist": "National Ballet",
-    "date": "2023-11-06",
-    "price": 850000,
-    "location": "Grand Theater",
-    "vibe": "elegant"
-  },
-  {
-    "id": 12,
-    "name": "Synthwave Night",
-    "genre": "electronic",
-    "artist": "Retro Future",
-    "date": "2023-11-07",
-    "price": 350000,
-    "location": "Rooftop Bar",
-    "vibe": "retro"
-  }
+    {
+        "id": 1,
+        "name": "Jazz Night at The Hall",
+        "genre": "Jazz",
+        "artist": "Sarah Wijaya",
+        "date": "2023-10-28",
+        "price": 150000,
+        "location": "Bandung",
+        "vibe": "intimate",
+        "seat_status": "Available"
+    },
+    {
+        "id": 2,
+        "name": "Rock Fest 2023",
+        "genre": "Rock",
+        "artist": "The Rollers",
+        "date": "2023-10-29",
+        "price": 450000,
+        "location": "Jakarta",
+        "vibe": "loud",
+        "seat_status": "Sold Out"
+    },
+    {
+        "id": 3,
+        "name": "Classical Evening",
+        "genre": "Classical",
+        "artist": "Isyana (Orchestra)",
+        "date": "2023-10-28",
+        "price": 300000,
+        "location": "Bandung",
+        "vibe": "formal",
+        "seat_status": "Limited"
+    },
+    {
+        "id": 4,
+        "name": "Indie Pop Sunset",
+        "genre": "Pop",
+        "artist": "Nadin Amizah",
+        "date": "2023-10-30",
+        "price": 200000,
+        "location": "Bandung",
+        "vibe": "chill",
+        "seat_status": "Available"
+    },
+    {
+        "id": 5,
+        "name": "Underground Jazz Session",
+        "genre": "Jazz",
+        "artist": "Eva Celia",
+        "date": "2023-10-28",
+        "price": 250000,
+        "location": "Jakarta",
+        "vibe": "intimate",
+        "seat_status": "Available"
+    },
+    {
+        "id": 6,
+        "name": "Metal Mayhem",
+        "genre": "Metal",
+        "artist": "Burgerkill",
+        "date": "2023-11-01",
+        "price": 50000,
+        "location": "Bandung",
+        "vibe": "aggressive",
+        "seat_status": "Available"
+    }
 ]
