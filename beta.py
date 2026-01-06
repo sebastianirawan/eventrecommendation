@@ -6,7 +6,7 @@ from autogen import AssistantAgent, UserProxyAgent, GroupChat, GroupChatManager,
 # ==========================================
 # 1. KONFIGURASI
 # ==========================================
-model = 'llama3.2'
+model = 'gpt-oss:20b'
 llm_config = {
     "config_list": [
         {
@@ -96,7 +96,7 @@ def check_seat_availability(event_ids: Union[List[int], str]) -> str:
 # ==========================================
 
 user = UserProxyAgent(
-    name="user",
+    name="UserProxyAgent",
     human_input_mode="NEVER",
     max_consecutive_auto_reply=10,
     is_termination_msg=lambda x: "TERMINATE" in x.get("content", "").upper(),
@@ -147,8 +147,9 @@ writer_agent = AssistantAgent(
     name="EventRecommendationWriterAgent",
     system_message="""
     You are a helpful assistant.
-    Summarize the event details (Name, Price, Location, Seat Status) provided by the previous step. 
+    Summarize the event details (Name, Price, Location, Seat Status) provided by the previous step to a user that is looking to buy a ticket.
     And give explanations on why this/these events match the users request.
+    Do it in indonesian.
     
     CRITICAL: You MUST end your response with the word: TERMINATE
     """,
@@ -174,6 +175,7 @@ def custom_speaker_selection(last_speaker, groupchat):
         
         if last_agent_name == "EventDataAgent": return seat_agent 
         elif last_agent_name == "SeatAvailabilityAgent": return writer_agent 
+        elif last_agent_name == "EventRecommendationWriterAgent": return None
         else: return preference_agent
 
     if last_speaker is preference_agent: return data_agent

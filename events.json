@@ -52,7 +52,7 @@
         "price": 250000,
         "location": "Jakarta",
         "vibe": "intimate",
-        "seat_status": "Available"
+        "seat_status": "Sold out"
     },
     {
         "id": 6,
