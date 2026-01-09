@@ -1,7 +1,10 @@
 import json
 import ast
+import threading
 from typing import List, Union
 from autogen import AssistantAgent, UserProxyAgent, GroupChat, GroupChatManager, register_function
+import tkinter as tk
+from tkinter import scrolledtext
 
 model = 'gpt-oss:20b'
 llm_config = {
@@ -31,7 +34,6 @@ def filter_events(genre: str = None, max_price: int = None, start_date: str = No
                     continue
             if max_price is not None and event['price'] > max_price:
                 continue
-            # Filter Date
             event_date = event['date']
             if start_date and event_date < start_date:
                 continue
@@ -169,12 +171,71 @@ groupchat = GroupChat(
 
 groupchat_mgr = GroupChatManager(groupchat, llm_config=llm_config)
 
-if __name__ == "__main__":
-    input_text = """
-    Tolong carikan tiket konser. Prioritas utama saya jazz.
-    Tanggalnya bebas antara 28 Oktober 2023 sampai 1 November 2023.
-    Budget maksimal 500.000.
-    """
+#UI
+
+def run_gui():
+    root = tk.Tk()
+    root.title("Event Recommendation")
+    root.geometry("600x650")
+
+    lbl_input = tk.Label(root, text="Prompt:", font=("Arial", 10, "bold"))
+    lbl_input.pack(pady=(10, 5), anchor="w", padx=10)
+
+    txt_input = scrolledtext.ScrolledText(root, height=5, width=70)
+    txt_input.pack(padx=10, pady=5)
     
-    print(f"\n--- User: {input_text} ---\n")
-    user.initiate_chat(groupchat_mgr, message=input_text)
+    default_prompt = "Tolong carikan tiket konser. Prioritas utama saya jazz. Tanggalnya bebas antara 28 Oktober 2023 sampai 1 November 2023. Budget maksimal 500.000."
+    txt_input.insert(tk.END, default_prompt)
+
+    lbl_output = tk.Label(root, text="Agent Recommendation:", font=("Arial", 10, "bold"))
+    lbl_output.pack(pady=(20, 5), anchor="w", padx=10)
+
+    txt_output = scrolledtext.ScrolledText(root, height=25, width=70, state='disabled')
+    txt_output.pack(padx=10, pady=5)
+
+    btn_submit = tk.Button(root, text="Submit")
+    btn_submit.pack(pady=15)
+
+    def update_ui_with_result(final_response):
+        txt_output.config(state='normal')
+        txt_output.delete("1.0", tk.END)
+        txt_output.insert(tk.END, final_response)
+        txt_output.config(state='disabled')
+        
+        btn_submit.config(state="normal", text="Submit")
+
+    def run_chat_background(user_prompt):
+        final_response = "Error: No recommendation found."
+        try:
+            chat_result = user.initiate_chat(groupchat_mgr, message=user_prompt)
+
+            history = getattr(chat_result, 'chat_history', groupchat.messages)
+
+            for msg in reversed(history):
+                name = msg.get('name', '')
+                if name == "EventRecommendationWriterAgent":
+                    content = msg.get('content', '')
+                    final_response = content.replace("TERMINATE", "").strip()
+                    break
+                    
+        except Exception as e:
+            final_response = f"An error occurred: {str(e)}"
+            print(final_response)
+
+        root.after(0, update_ui_with_result, final_response)
+
+    def on_submit():
+        user_prompt = txt_input.get("1.0", tk.END).strip()
+        if not user_prompt:
+            return
+
+        btn_submit.config(state="disabled", text="Processing.... This may take a while.")
+        t = threading.Thread(target=run_chat_background, args=(user_prompt,), daemon=True)
+        t.start()
+
+    btn_submit.config(command=on_submit)
+
+    root.mainloop()
+
+if __name__ == "__main__":
+    run_gui()
