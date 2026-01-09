@@ -1,11 +1,8 @@
 import json
-import ast # <--- TAMBAHAN PENTING
-from typing import List, Union # <--- TAMBAHAN PENTING
+import ast
+from typing import List, Union
 from autogen import AssistantAgent, UserProxyAgent, GroupChat, GroupChatManager, register_function
 
-# ==========================================
-# 1. KONFIGURASI
-# ==========================================
 model = 'gpt-oss:20b'
 llm_config = {
     "config_list": [
@@ -19,10 +16,6 @@ llm_config = {
     "temperature": 0,
 }
 
-# ==========================================
-# 2. TOOLS (DIPERBAIKI)
-# ==========================================
-
 def filter_events(genre: str = None, max_price: int = None, start_date: str = None, end_date: str = None) -> str:
     print(f"\n[SYSTEM] Filtering: Genre={genre}, Price={max_price}, Date={start_date}-{end_date}...")
     try:
@@ -31,13 +24,11 @@ def filter_events(genre: str = None, max_price: int = None, start_date: str = No
         
         results = []
         for event in events:
-            # Filter Genre
             if genre:
                 g_in = genre.lower().split()
                 g_db = event['genre'].lower()
                 if not any(k in g_db for k in g_in):
                     continue
-            # Filter Price
             if max_price is not None and event['price'] > max_price:
                 continue
             # Filter Date
@@ -56,19 +47,15 @@ def filter_events(genre: str = None, max_price: int = None, start_date: str = No
     except Exception as e:
         return f"Error: {str(e)}"
 
-# === FUNGSI INI KITA UBAH AGAR MENERIMA STRING JUGA ===
 def check_seat_availability(event_ids: Union[List[int], str]) -> str:
     print(f"\n[SYSTEM] Checking Seats for IDs: {event_ids} (Type: {type(event_ids)})...")
     
-    # 1. JIKA INPUT ADALAH STRING (Contoh: "[1, 6]"), UBAH JADI LIST
     if isinstance(event_ids, str):
         try:
-            # ast.literal_eval aman mengubah string "[1, 6]" menjadi list [1, 6]
             event_ids = ast.literal_eval(event_ids)
         except:
             return "Error: event_ids format is invalid. Must be a list like [1, 2]."
 
-    # 2. SEKARANG KITA YAKIN 'event_ids' ADALAH LIST
     if not isinstance(event_ids, list):
          return "Error: event_ids must be a list."
 
@@ -90,10 +77,6 @@ def check_seat_availability(event_ids: Union[List[int], str]) -> str:
             })
             
     return json.dumps(results)
-
-# ==========================================
-# 3. AGENTS
-# ==========================================
 
 user = UserProxyAgent(
     name="UserProxyAgent",
@@ -156,16 +139,8 @@ writer_agent = AssistantAgent(
     llm_config=llm_config
 )
 
-# ==========================================
-# 4. REGISTER TOOLS
-# ==========================================
-
 register_function(filter_events, caller=data_agent, executor=user, name="filter_events", description="Filters events database.")
 register_function(check_seat_availability, caller=seat_agent, executor=user, name="check_seat_availability", description="Checks seat availability.")
-
-# ==========================================
-# 5. CUSTOM FLOW CONTROL
-# ==========================================
 
 def custom_speaker_selection(last_speaker, groupchat):
     messages = groupchat.messages
@@ -184,10 +159,6 @@ def custom_speaker_selection(last_speaker, groupchat):
     if last_speaker is writer_agent: return user 
 
     return "auto"
-
-# ==========================================
-# 6. EKSEKUSI
-# ==========================================
 
 groupchat = GroupChat(
     agents=[user, preference_agent, data_agent, seat_agent, writer_agent],
