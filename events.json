@@ -1,8 +1,68 @@
 [
-    {"id": 1, "name": "Twilight Jazz Festival", "genre": "jazz", "artist": "Sarah & The band", "date": "2023-10-28", "price": 450000, "location": "City Park Open Air", "vibe": "intimate"},
-    {"id": 2, "name": "Rock Explosion", "genre": "rock", "artist": "The Thunder", "date": "2023-10-29", "price": 750000, "location": "Grand Stadium", "vibe": "loud"},
-    {"id": 3, "name": "Classical Night", "genre": "classical", "artist": "City Orchestra", "date": "2023-10-28", "price": 300000, "location": "Opera House", "vibe": "formal"},
-    {"id": 4, "name": "Indie Vibes", "genre": "pop", "artist": "Moon Child", "date": "2023-10-30", "price": 150000, "location": "Small Cafe", "vibe": "relaxed"},
-    {"id": 5, "name": "Theater: Romeo & Juliet", "genre": "theater", "artist": "Drama Club", "date": "2023-10-28", "price": 200000, "location": "Community Hall", "vibe": "artistic"},
-    {"id": 6, "name": "Jazz in the Park", "genre": "jazz", "artist": "Smooth Trio", "date": "2023-11-01", "price": 100000, "location": "Central Garden", "vibe": "open-air"}
+    {
+        "id": 1,
+        "name": "Jazz Night at The Hall",
+        "genre": "Jazz",
+        "artist": "Sarah Wijaya",
+        "date": "2023-10-28",
+        "price": 150000,
+        "location": "Bandung",
+        "vibe": "intimate",
+        "seat_status": "Available"
+    },
+    {
+        "id": 2,
+        "name": "Rock Fest 2023",
+        "genre": "Rock",
+        "artist": "The Rollers",
+        "date": "2023-10-29",
+        "price": 450000,
+        "location": "Jakarta",
+        "vibe": "loud",
+        "seat_status": "Sold Out"
+    },
+    {
+        "id": 3,
+        "name": "Classical Evening",
+        "genre": "Classical",
+        "artist": "Isyana (Orchestra)",
+        "date": "2023-10-28",
+        "price": 300000,
+        "location": "Bandung",
+        "vibe": "formal",
+        "seat_status": "Limited"
+    },
+    {
+        "id": 4,
+        "name": "Indie Pop Sunset",
+        "genre": "Pop",
+        "artist": "Nadin Amizah",
+        "date": "2023-10-30",
+        "price": 200000,
+        "location": "Bandung",
+        "vibe": "chill",
+        "seat_status": "Available"
+    },
+    {
+        "id": 5,
+        "name": "Underground Jazz Session",
+        "genre": "Jazz",
+        "artist": "Eva Celia",
+        "date": "2023-10-28",
+        "price": 250000,
+        "location": "Jakarta",
+        "vibe": "intimate",
+        "seat_status": "Sold out"
+    },
+    {
+        "id": 6,
+        "name": "Metal Mayhem",
+        "genre": "Metal",
+        "artist": "Burgerkill",
+        "date": "2023-11-01",
+        "price": 50000,
+        "location": "Bandung",
+        "vibe": "aggressive",
+        "seat_status": "Available"
+    }
 ]
